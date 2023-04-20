@@ -13,9 +13,27 @@ const SUFFIX = {
 }
 
 export default function Home() {
-  const [curSite, setCurSite] = useState(null);
+  const [curSite, setCurSite] = useState('');
+  const [classical, setClassical] = useState({
+    desc: '',
+    site: ''
+  });
+  const [recommend, setRecommend] = useState({
+    desc: '',
+    site: ''
+  });
 
-  useEffect(() => setCurSite(window.location.href), []);
+  useEffect(() => {
+    setCurSite(window.location.href);
+    setClassical({
+      desc: ['主', '域', '名', ' (' , '需', '🪜', ')'].join(''),
+      site: PROTOCOL.concat(DOMAIN, SUFFIX.COM)
+    });
+    setRecommend({
+      desc: ['推', '荐', '域', '名', ' (', '直', '接', '访', '问', ')'].join(''),
+      site: PROTOCOL.concat(DOMAIN, SUFFIX.WORK)
+    });
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -35,15 +53,15 @@ export default function Home() {
 
         <div className={styles.grid}>
           <div className={styles.card}>
-            <h3 className={styles.deprecated}>{['主', '域', '名'].join('')} ({['需', '🪜'].join('')})</h3>
-            <a className={styles.deprecated} href={PROTOCOL.concat(DOMAIN, SUFFIX.COM)} >{PROTOCOL.concat(DOMAIN, SUFFIX.COM)}</a>
+            <h3 className={styles.deprecated}>{classical.desc}</h3>
+            <a className={styles.deprecated} href={classical.site} >{classical.site}</a>
           </div>
         </div>
 
         <div className={styles.grid}>
           <div className={styles.card}>
-            <h3>{['推', '荐', '域', '名'].join('')} ({['直', '接', '访', '问'].join('')})</h3>
-            <a href={PROTOCOL.concat(DOMAIN, SUFFIX.WORK)}>{PROTOCOL.concat(DOMAIN, SUFFIX.WORK)}</a>
+            <h3>{recommend.desc}</h3>
+            <a href={recommend.site}>{recommend.site}</a>
           </div>
         </div>
 
