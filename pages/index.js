@@ -1,7 +1,22 @@
 import Head from 'next/head';
+import { useState, useEffect } from 'react';
 import styles from '../styles/Home.module.css';
 
+const Q_GROUP = '572982126';
+const PROTOCOL = 'https://';
+const DOMAIN = 'liaobots';
+const SLOGAN = 'LiaoBots UI';
+const SUFFIX = {
+  COM: '.com',
+  SITE: '.site',
+  WORK: '.work'
+}
+
 export default function Home() {
+  const [curSite, setCurSite] = useState(null);
+
+  useEffect(() => setCurSite(window.location.href), []);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -10,54 +25,39 @@ export default function Home() {
       </Head>
 
       <main>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+        <h2 className={styles.title}>
+          欢迎来到 {SLOGAN} !
+        </h2>
 
         <p className={styles.description}>
-          Get started by editing <code>pages/index.js</code>
+          备用地址 👇🏻
         </p>
 
         <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+          <div className={styles.card}>
+            <h3 className={styles.deprecated}>{['主', '域', '名'].join('')} ({['需', '🪜'].join('')})</h3>
+            <a className={styles.deprecated} href={PROTOCOL.concat(DOMAIN, SUFFIX.COM)} >{PROTOCOL.concat(DOMAIN, SUFFIX.COM)}</a>
+          </div>
+        </div>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+        <div className={styles.grid}>
+          <div className={styles.card}>
+            <h3>{['推', '荐', '域', '名'].join('')} ({['直', '接', '访', '问'].join('')})</h3>
+            <a href={PROTOCOL.concat(DOMAIN, SUFFIX.WORK)}>{PROTOCOL.concat(DOMAIN, SUFFIX.WORK)}</a>
+          </div>
+        </div>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+        <div className={styles.grid}>
+          <div className={styles.card}>
+            <h3>{['本', '导', '航', '页', '地', '址', '，', '请', '保', '存'].join('')}</h3>
+            <a href={curSite}>{curSite}</a>
+          </div>
         </div>
       </main>
 
       <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel" className={styles.logo} />
-        </a>
+        <p>使用不同域名，需要填入之前的授权码，即可恢复余额，若忘记授权码，进Q群({Q_GROUP})联系客服</p>
+        <p>另外由于聊天记录保存在本地，换了域名后会发现聊天记录没了，你可以在之前的域名把聊天记录导出，在新域名导入</p>
       </footer>
 
       <style jsx>{`
@@ -72,20 +72,18 @@ export default function Home() {
         footer {
           width: 100%;
           height: 100px;
-          border-top: 1px solid #eaeaea;
+          //border-top: 1px solid #eaeaea;
           display: flex;
+          flex-direction: column;
           justify-content: center;
           align-items: center;
+          font-size: 14px;
         }
         footer img {
           margin-left: 0.5rem;
         }
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          text-decoration: none;
-          color: inherit;
+        footer p {
+          margin: 0.5rem 0;
         }
         code {
           background: #fafafa;
@@ -100,6 +98,8 @@ export default function Home() {
       <style jsx global>{`
         html,
         body {
+          color: #f3f4f6;
+          background: #343541;
           padding: 0;
           margin: 0;
           font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
