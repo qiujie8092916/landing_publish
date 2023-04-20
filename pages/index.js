@@ -53,15 +53,15 @@ export default function Home() {
 
         <div className={styles.grid}>
           <div className={styles.card}>
-            <h3 className={styles.deprecated}>{classical.desc}</h3>
-            <a className={styles.deprecated} href={classical.site} >{classical.site}</a>
+            <h3>{recommend.desc}</h3>
+            <a href={recommend.site}>{recommend.site}</a>
           </div>
         </div>
 
         <div className={styles.grid}>
           <div className={styles.card}>
-            <h3>{recommend.desc}</h3>
-            <a href={recommend.site}>{recommend.site}</a>
+            <h3 className={styles.deprecated}>{classical.desc}</h3>
+            <a className={styles.deprecated} href={classical.site} >{classical.site}</a>
           </div>
         </div>
 
@@ -89,13 +89,14 @@ export default function Home() {
         }
         footer {
           width: 100%;
-          height: 100px;
+          padding-bottom: 1rem;
           //border-top: 1px solid #eaeaea;
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
           font-size: 14px;
+          
         }
         footer img {
           margin-left: 0.5rem;
@@ -110,6 +111,14 @@ export default function Home() {
           font-size: 1.1rem;
           font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
             DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+        }
+
+        @media screen and (max-width: 768px) and (orientation: portrait) {
+          main {
+            flex: initial;
+            padding: 2.8rem 0 4.2rem;
+            justify-content: flex-start;
+          }
         }
       `}</style>
 
