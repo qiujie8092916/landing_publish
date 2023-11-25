@@ -1,7 +1,13 @@
 {
   "Welcome": "Welcome to",
-  "Classical Title": "Main Domain",
+  "Alternate": "Alternate address",
+  "Save This Navigation Page": "This navigation page address, please save",
+  "Classical Title": "Main site",
   "Classical Desc": "Need \uD83E\uDE9C",
+  "Share Title": "Official mirror site",
+  "Share Desc": "Official full functionality（GPTs、DALL-E、Plugins）",
   "Recommended Title": "Recommended Domain",
-  "Recommended Desc": "Direct access"
+  "Recommended Desc": "Direct access",
+  "Footer 1": "Using a different domain name, you can restore your balance by entering the previously authorized code. If you forget the authorization code, please contact customer service in the Q group ({{Q_GROUP}})",
+  "Footer 2": "Due to the chat records being stored locally, when the domain is changed, you may find that the chat records are lost. You can export the chat records from the previous domain and import them into the new domain"
 }

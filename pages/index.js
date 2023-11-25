@@ -1,57 +1,64 @@
-import Head from 'next/head';
-import { useState, useEffect } from 'react';
-import styles from '../styles/Home.module.css';
-import { useRouter } from 'next/router'
-import Link from 'next/link'
-import { useTranslation } from 'next-i18next';
+import styles from "../styles/Home.module.css";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Head from "next/head";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 
-const Q_GROUP = '572982126';
-const PROTOCOL = 'https://';
-const DOMAIN = 'liaobots';
-const SLOGAN = 'LiaoBots UI';
+const Q_GROUP = "572982126";
+const PROTOCOL = "https://";
+const DOMAIN = "liaobots";
+const SHARE_DOMAIN = "x.liaox";
+const SLOGAN = "LiaoBots UI";
 const SUFFIX = {
-  COM: '.com',
-  SITE: '.site',
-  WORK: '.work'
-}
-
-const SHARE_URL = 'plusx.one';
+  COM: ".com",
+  SITE: ".site",
+  WORK: ".work",
+  AI: ".ai",
+  ONE: ".one",
+};
 
 export default function Home() {
   const router = useRouter();
   const { locale, locales } = router;
   const currentLocale = locale;
 
-  const { t } = useTranslation('common');
+  const { t } = useTranslation("common");
 
-  const [curSite, setCurSite] = useState('');
+  const [curSite, setCurSite] = useState("");
   const [classical, setClassical] = useState({
-    title: '',
-    desc: '',
-    site: ''
-  });
-  const [share, setShare] = useState({
-    title: '',
-    desc: '',
-    site: ''
+    title: "",
+    desc: "",
+    site: "",
   });
   const [recommend, setRecommend] = useState({
-    title: '',
-    desc: '',
-    site: ''
+    title: "",
+    desc: "",
+    site: "",
+  });
+  const [share, setShare] = useState({
+    title: "",
+    desc: "",
+    site: "",
   });
 
   useEffect(() => {
     setCurSite(window.location.href);
     setClassical({
-      title: ['Classical', 'Title'].join(' '),
-      desc: ['Classical', 'Desc'].join(' '),
-      site: PROTOCOL.concat(DOMAIN, SUFFIX.COM)
+      title: ["Classical", "Title"].join(" "),
+      desc: ["Classical", "Desc"].join(" "),
+      site: PROTOCOL.concat(DOMAIN, SUFFIX.COM),
     });
     setRecommend({
-      title: ['Recommended', 'Title'].join(' '),
-      desc: ['Recommended', 'Desc'].join(' '),
-      site: PROTOCOL.concat(DOMAIN, SUFFIX.WORK)
+      title: ["Recommended", "Title"].join(" "),
+      desc: ["Recommended", "Desc"].join(" "),
+      site: PROTOCOL.concat(DOMAIN, SUFFIX.WORK),
+    });
+    setShare({
+      title: ["Share", "Title"].join(" "),
+      desc: ["Share", "Desc"].join(" "),
+      site: PROTOCOL.concat(SHARE_DOMAIN, SUFFIX.AI),
     });
   }, []);
 
@@ -63,56 +70,72 @@ export default function Home() {
       </Head>
 
       <header className={styles.header}>
-        <Link href="/" locale={locales.indexOf(currentLocale) + 1 < locales.length ? locales[locales.indexOf(currentLocale) + 1] : locales[0]}>
+        <Link
+          href="/"
+          locale={
+            locales.indexOf(currentLocale) + 1 < locales.length
+              ? locales[locales.indexOf(currentLocale) + 1]
+              : locales[0]
+          }
+        >
           <button>🌐 {currentLocale.toUpperCase()}</button>
         </Link>
       </header>
       <main>
         <h2 className={styles.title}>
-          {t('Welcome')}{' '}{SLOGAN} !
+          {t("Welcome")} {SLOGAN} !
         </h2>
 
-        <p className={styles.description}>
-          备用地址 👇🏻
-        </p>
+        {/*<p className={styles.description}>{t("Alternate")} 👇🏻</p>*/}
 
         <div className={styles.grid}>
           <div className={styles.card}>
-            <h3 className={styles.deprecated}>{t(classical.title)}</h3>
-            <h5 className={styles.deprecated}>{t(classical.desc)}</h5>
-            <a className={styles.deprecated} href={classical.site} >{classical.site}</a>
+            <h3>{t(classical.title)}</h3>
+            <div>
+              <a href={classical.site}>{classical.site}</a>
+              <span className={styles.desc}>（{t(classical.desc)}）</span>
+            </div>
+            <div>
+              <a href={recommend.site}>{recommend.site}</a>
+              <span className={styles.desc}>（{t(recommend.desc)}）</span>
+            </div>
           </div>
         </div>
 
         <div className={styles.grid}>
           <div className={styles.card}>
-            <h3>{t(recommend.title)}</h3>
-            <h5>{t(recommend.desc)}</h5>
-            <a href={recommend.site}>{recommend.site}</a>
+            <h3>{t(share.title)}</h3>
+            <a href={share.site}>{share.site}</a>
+            <span className={styles.desc}>（{t(share.desc)}）</span>
           </div>
         </div>
 
         <div className={styles.grid}>
           <div className={styles.card}>
-            <h3>{['本', '导', '航', '页', '地', '址', '，', '请', '保', '存'].join('')}</h3>
+            <h3>{t("Save This Navigation Page")}</h3>
             <a href={curSite}>{curSite}</a>
           </div>
         </div>
       </main>
 
       <footer>
-        <p>使用不同域名，需要填入之前的授权码，即可恢复余额，若忘记授权码，进Q群({Q_GROUP})联系客服</p>
-        <p>由于聊天记录保存在本地，换了域名后会发现聊天记录没了，你可以在之前的域名把聊天记录导出，在新域名导入</p>
+        <p>
+          {t("Footer 1", {
+            Q_GROUP,
+          })}
+        </p>
+        {/*<p>{t("Footer 2")}</p>*/}
       </footer>
 
       <style jsx>{`
         main {
-          padding: 4rem 0 5rem;
           flex: 1;
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          transform: translateY(-2rem);
+          gap: 2rem;
         }
         footer {
           width: 100%;
@@ -123,12 +146,14 @@ export default function Home() {
           justify-content: center;
           align-items: center;
           font-size: 14px;
+          margin-bottom: 12px;
         }
         footer img {
           margin-left: 0.5rem;
         }
         footer p {
-          margin: 0.5rem 0;
+          margin: 0.5rem 10rem;
+          text-align: center;
         }
         code {
           background: #fafafa;
@@ -156,5 +181,16 @@ export default function Home() {
         }
       `}</style>
     </div>
-  )
+  );
 }
+
+export const getServerSideProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? "en", ["common"], null, [
+        "zh",
+        "en",
+      ])),
+    },
+  };
+};

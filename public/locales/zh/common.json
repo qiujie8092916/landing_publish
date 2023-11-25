@@ -1,7 +1,13 @@
 {
   "Welcome": "欢迎来到",
-  "Classical Title": "主域名",
+  "Alternate": "备用地址",
+  "Save This Navigation Page": "本导航页地址，请保存",
+  "Classical Title": "主站",
   "Classical Desc": "需 \uD83E\uDE9C",
+  "Share Title": "官方镜像站",
+  "Share Desc": "官方全功能（GPTs、绘图、插件）",
   "Recommended Title": "推荐域名",
-  "Recommended Desc": "直接访问"
+  "Recommended Desc": "直接访问",
+  "Footer 1": "使用不同域名，需要填入之前的授权码，即可恢复余额，若忘记授权码，进Q群({{Q_GROUP}})联系客服",
+  "Footer 2": "由于聊天记录保存在本地，换了域名后会发现聊天记录没了，你可以在之前的域名把聊天记录导出，在新域名导入"
 }

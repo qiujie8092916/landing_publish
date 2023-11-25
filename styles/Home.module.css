@@ -1,5 +1,5 @@
 .container {
-  min-height: 100vh;
+  height: 100vh;
   padding: 0 0.5rem;
   display: flex;
   flex-direction: column;
@@ -53,6 +53,7 @@
 
 
 .description {
+  margin: 1rem 0;
   line-height: 1.5;
   font-size: 1.5rem;
 }
@@ -62,7 +63,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 3rem;
+  /*margin-top: 1rem;*/
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #4a4c5b;
 }
 
 /*.grid::after {*/
@@ -100,8 +104,13 @@
 /*}*/
 
 .card h3 {
-  margin: 0 0 1rem 0;
+  margin: 0 0 0.2rem 0;
   font-size: 1.5rem;
+}
+
+.desc {
+  margin: 0 0 1rem;
+  opacity: 0.6;
 }
 
 .card p {

@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "clsx": "^2.0.0",
     "i18next": "^22.5.1",
     "next": "latest",
     "next-i18next": "^13.3.0",
