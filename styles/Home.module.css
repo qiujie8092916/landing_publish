@@ -7,6 +7,24 @@
   align-items: center;
 }
 
+.header {
+  width: 100%;
+  display: flex;
+  padding: 1rem;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.header button {
+  outline: none;
+  color: #f3f4f6;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 4px;
+  background: transparent;
+  border: 1px solid #566b73;
+}
+
 .title a {
   color: #0070f3;
   text-decoration: none;

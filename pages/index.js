@@ -1,6 +1,9 @@
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import styles from '../styles/Home.module.css';
+import { useRouter } from 'next/router'
+import Link from 'next/link'
+import { useTranslation } from 'next-i18next';
 
 const Q_GROUP = '572982126';
 const PROTOCOL = 'https://';
@@ -12,13 +15,28 @@ const SUFFIX = {
   WORK: '.work'
 }
 
+const SHARE_URL = 'plusx.one';
+
 export default function Home() {
+  const router = useRouter();
+  const { locale, locales } = router;
+  const currentLocale = locale;
+
+  const { t } = useTranslation('common');
+
   const [curSite, setCurSite] = useState('');
   const [classical, setClassical] = useState({
+    title: '',
+    desc: '',
+    site: ''
+  });
+  const [share, setShare] = useState({
+    title: '',
     desc: '',
     site: ''
   });
   const [recommend, setRecommend] = useState({
+    title: '',
     desc: '',
     site: ''
   });
@@ -26,11 +44,13 @@ export default function Home() {
   useEffect(() => {
     setCurSite(window.location.href);
     setClassical({
-      desc: ['主', '域', '名', ' (' , '需', '🪜', ')'].join(''),
+      title: ['Classical', 'Title'].join(' '),
+      desc: ['Classical', 'Desc'].join(' '),
       site: PROTOCOL.concat(DOMAIN, SUFFIX.COM)
     });
     setRecommend({
-      desc: ['推', '荐', '域', '名', ' (', '直', '接', '访', '问', ')'].join(''),
+      title: ['Recommended', 'Title'].join(' '),
+      desc: ['Recommended', 'Desc'].join(' '),
       site: PROTOCOL.concat(DOMAIN, SUFFIX.WORK)
     });
   }, []);
@@ -42,9 +62,14 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <header className={styles.header}>
+        <Link href="/" locale={locales.indexOf(currentLocale) + 1 < locales.length ? locales[locales.indexOf(currentLocale) + 1] : locales[0]}>
+          <button>🌐 {currentLocale.toUpperCase()}</button>
+        </Link>
+      </header>
       <main>
         <h2 className={styles.title}>
-          欢迎来到 {SLOGAN} !
+          {t('Welcome')}{' '}{SLOGAN} !
         </h2>
 
         <p className={styles.description}>
@@ -53,14 +78,16 @@ export default function Home() {
 
         <div className={styles.grid}>
           <div className={styles.card}>
-            <h3 className={styles.deprecated}>{classical.desc}</h3>
+            <h3 className={styles.deprecated}>{t(classical.title)}</h3>
+            <h5 className={styles.deprecated}>{t(classical.desc)}</h5>
             <a className={styles.deprecated} href={classical.site} >{classical.site}</a>
           </div>
         </div>
 
         <div className={styles.grid}>
           <div className={styles.card}>
-            <h3>{recommend.desc}</h3>
+            <h3>{t(recommend.title)}</h3>
+            <h5>{t(recommend.desc)}</h5>
             <a href={recommend.site}>{recommend.site}</a>
           </div>
         </div>
@@ -75,12 +102,12 @@ export default function Home() {
 
       <footer>
         <p>使用不同域名，需要填入之前的授权码，即可恢复余额，若忘记授权码，进Q群({Q_GROUP})联系客服</p>
-        <p>另外由于聊天记录保存在本地，换了域名后会发现聊天记录没了，你可以在之前的域名把聊天记录导出，在新域名导入</p>
+        <p>由于聊天记录保存在本地，换了域名后会发现聊天记录没了，你可以在之前的域名把聊天记录导出，在新域名导入</p>
       </footer>
 
       <style jsx>{`
         main {
-          padding: 5rem 0;
+          padding: 4rem 0 5rem;
           flex: 1;
           display: flex;
           flex-direction: column;
