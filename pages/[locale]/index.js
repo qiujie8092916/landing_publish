@@ -71,9 +71,14 @@ export default function Home() {
         <LanguageSwitchLink />
       </header>
       <main>
-        <h2 className={styles.title}>
-          {t("Welcome")} {SLOGAN} !
-        </h2>
+        <div>
+          <h2 className={styles.title}>
+            {t("Welcome")}
+          </h2>
+          <h2 className={styles.title}>
+            {SLOGAN} !
+          </h2>
+        </div>
 
         {/*<p className={styles.description}>{t("Alternate")} 👇🏻</p>*/}
 
@@ -129,14 +134,14 @@ export default function Home() {
 
         footer {
           width: 100%;
-          height: 100px;
+          //height: 100px;
           //border-top: 1px solid #eaeaea;
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
           font-size: 14px;
-          margin-bottom: 12px;
+          margin-bottom: 3rem;
         }
 
         footer img {
@@ -144,8 +149,9 @@ export default function Home() {
         }
 
         footer p {
-          margin: 0.5rem 10rem;
+          margin: 0.5rem auto;
           text-align: center;
+          max-width: 80%;
         }
 
         code {
@@ -156,22 +162,33 @@ export default function Home() {
           font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
             DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
         }
-      `}</style>
 
-      <style jsx global>{`
-        html,
-        body {
-          color: #f3f4f6;
-          background: #343541;
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
+
+        a {
+          color: inherit;
+          text-decoration: none;
         }
 
-        * {
-          box-sizing: border-box;
+        img {
+          max-width: 100%;
+          height: auto;
+        }
+
+        h1,
+        h2,
+        p,
+        ul {
+          margin: 0;
+        }
+
+        ul {
+          padding: 0;
+          list-style: none;
+        }
+
+        button {
+          padding: 0.5rem 1rem;
+          font-weight: bold;
         }
       `}</style>
     </div>
